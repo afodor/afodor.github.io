@@ -1,4 +1,4 @@
-
+ 
 function StaticHolder()
 {
 	if( !StaticHolder.ranges)
@@ -14,19 +14,7 @@ function StaticHolder()
 		StaticHolder.highlightedNode=null;
 		StaticHolder.maxLevel = -1;
 		StaticHolder.highlightReverse=false;
-		StaticHolder.repopulatePrimary = false;
 	}
-	
-	this.setRepopulatePrimary = function( bool)
-	{
-		StaticHolder.repopulatePrimary = bool;
-	}
-	
-	this.getRepopulatePrimary = function()
-	{
-		return StaticHolder.repopulatePrimary;
-	}
-	
 	
 	this.setMaxLevel = function(aLevel)
 	{
@@ -159,8 +147,11 @@ var dataNames = [];
 var lastSelected = null;
 var animationOn=false;
 
-var stopOnGrandChild = false;
 var stopOnChild = false;
+var displayDataset= null; 
+var dragging =false;
+var lastArranged = null;
+
 
 this.addNoise = function()
 {
@@ -287,59 +278,55 @@ this.makeDirty = function()
 
 this.reforce = function()
 {
-	if( force != null ) 
-	{
-		force.stop();
-	}
-	
+
 	this.setWidthAndHeight();
 	
-    force = d3.layout.force()
-    .charge(function(d) { return d._children ? -d.numSeqs / 100 : -30; })
-    .linkDistance(function(d) { return d.target._children ? 80 * (d.nodeDepth-16)/16 : 30; })
-    .size([w, h - 60]).gravity(aDocument.getElementById("gravitySlider").value/100)
-    
-    aDrag = function(d)
-    {
-    	if( graphType ==  "ForceTree" )//  && thisDocument.getElementById("dragNodes").checked )
-		{
+	if( graphType == "ForceTree")
+	{
 
-    		d.fixed=true; 
-    		d.userMoved = true;
-    		d.xMap[thisID]=d.x ;
-    		d.yMap[thisID] = d.y ;
-    		//thisContext.update();
-		}
-		
+	    force = d3.layout.force()
+	    .charge(function(d) { return d._children ? -d.numSeqs / 100 : -30; })
+	    .linkDistance(function(d) { return d.target._children ? 80 * (d.nodeDepth-16)/16 : 30; })
+	    .size([w, h - 60]).gravity(aDocument.getElementById("gravitySlider").value/100)
+	    
+	    drag = force.drag().on("dragstart", function(d) 
+	    { 
+	    	d.fixed =true;    	
+	    	d.userMoved = true;
+	    	dragging =true;
+	    	force.start();
+	    	
+		});
+	    
+	    drag = force.drag().on("drag", function(d) 
+	    { 
+	    	dragging =true;
+	    	force.start();	
+	    });
+	    
+	    drag = force.drag().on("dragend", function(d) 
+	    { 
+	    	d.fixed=true;
+	    	d.userMoved = true;    	
+	    	d.parentDataNode.xMap[thisID] = d.x;
+	    	d.parentDataNode.yMap[thisID] = d.y;
+	    });
+	    
+	    force.start();
+	    
+	    stopOnChild = true;
+
 	}
-    
-    
-    drag = force.drag().on("dragstart", function(d) { if( graphType ==  "ForceTree" )//  && thisDocument.getElementById("dragNodes").checked )
-	{
-    	if( force ) 
-    	{
-    		force.stop();
-    	}
-		d.x = d.xMap[thisID] ;
-		d.y= d.yMap[thisID] ;
-	} });
-    drag = force.drag().on("drag", function(d) { aDrag(d) });
-    
-    drag = force.drag().on("dragend", function(d) { 
-    if( force ) 
-	{
-		force.start().gravity(aDocument.getElementById("gravitySlider").value/100);
-	} 
-    	thisContext.update(); });
+	
 
     if( graphType != "ForceTree")
     {
     	vis = d3.select("body").append("svg:svg")
         .attr("width", w)
-        .attr("height", h)
-      .append("g")
-        .call(d3.behavior.zoom().scaleExtent([0.01, 100]).on("zoom", thisContext.zoom))
-      .append("g");
+        .attr("height", h);
+    	
+    	//.append("g").call(d3.behavior.zoom().scaleExtent([0.01, 100]).on("zoom", thisContext.zoom))
+      //.append("g");
     }
     else
     {
@@ -359,6 +346,52 @@ this.computeTextRotation = function(d) {
 this.zoom = function() {
   vis.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
   thisContext.redrawScreen();
+}
+
+this.getDisplayDataset = function()
+{
+	if(  displayDataset)
+		return displayDataset;
+	
+	displayDataset= { nodes : [] }; 
+	
+	var index =0;
+	
+	function addAndReturnChild(aNode, childIndex)
+	{
+		var newChildNode = aNode.children[childIndex];
+		var newDisplayNode= {};
+		newDisplayNode.name = "NAME_" + index;
+		index++;
+		newDisplayNode.fixed = true;
+		displayDataset.nodes.push(newDisplayNode);
+		newDisplayNode.parentDataNode = newChildNode;
+		
+		if( newChildNode.children)
+		{
+			newDisplayNode.children=[];
+			for( var x=0; x < newChildNode.children.length; x++)
+			{
+				newDisplayNode.children.push( addAndReturnChild(newChildNode, x) );
+			}
+		}
+		
+		return newDisplayNode;
+	}
+	
+	var rootDisplayNode = {};
+	rootDisplayNode.name = "NAME_" +  index;
+	index++;
+	rootDisplayNode.fixed= false;
+	displayDataset.nodes.push(rootDisplayNode);
+	rootDisplayNode.parentDataNode = statics.getRoot();
+	rootDisplayNode.children = [];
+	
+	for( var x=0; x < statics.getRoot().children.length; x++)
+		rootDisplayNode.children.push( addAndReturnChild(statics.getRoot(), x) );
+	
+	return displayDataset;
+	
 }
 
 this.setWidthAndHeight = function()
@@ -420,14 +453,24 @@ this.reVis = function(revisAll)
 
 }
 
-this.reVisOne = function() 
+this.reVisOne = function(resetPositions) 
 {
 	
-	this.checkForStop()
 	this.setWidthAndHeight();
-	this.setInitialPositions();
+	
+	if( graphType != "ForceTree"  )
+		this.setInitialPositions();
+	
+
+	if( graphType != "ForceTree"  )
+		vis.selectAll("g").remove();
+	
+	
 	vis.remove();
+	
+	
 	this.reforce();
+	
 	dirty=true;
     this.update();
 }
@@ -823,7 +866,7 @@ this.getLabelText = function(d)
 
 this.myFilterNodes = function(d)
 {
-	 if( ! d.doNotShow )
+	 if( d.parentDataNode.doNotShow == false)
 	 	return true;
 	 	
 	 return false;
@@ -831,10 +874,10 @@ this.myFilterNodes = function(d)
 
 this.myFilterLinks= function(d)
 {
-     if( d.source.setVisible  && d.target.setVisible)
-      		return true;
+	 if( d.source.parentDataNode.doNotShow == true|| d.target.parentDataNode.doNotShow == true)
+      		return false;
       	
-      return false;
+      return true;
       		
 }
 
@@ -855,11 +898,12 @@ this.isNumber = function (n) {
 
 this.getAVal = function (d, xAxis)
 {
-
 	if( graphType == "ForceTree" )
 	{
-			return xAxis? d.xMap[thisID]: d.yMap[thisID];	
+		return xAxis? d.x: d.y;	
 	}
+	
+	d = d.parentDataNode;
 	
 	chosen = null;
 	
@@ -1112,6 +1156,21 @@ this.update = function()
  	
 	if( dirty ) 
 	{
+		if( animationOn == false && stopOnChild == false)
+		{
+			dataset = thisContext.getDisplayDataset();
+			for( var x=0; x < dataset.nodes.length; x++)
+			{
+				if( ! dataset.nodes[x].userMoved )
+				{
+					dataset.nodes[x].x = dataset.nodes[x].parentDataNode.xMap[thisID]
+					dataset.nodes[x].y = dataset.nodes[x].parentDataNode.yMap[thisID]			  				
+				}
+			}
+		}
+		
+			
+		
 		dirty = false;
 		var anyLabels = false;
 		
@@ -1194,115 +1253,107 @@ this.update = function()
 	 		nodes[i].thisNodeRadius = this.getRadiusVal(nodes[i]);
 	 	}	
 		
-		for( var z=0; z < nodes.length; z++)
-			nodes[z].setVisible=false;
+		var filteredNodes = thisContext.getDisplayDataset().nodes.filter(thisContext.myFilterNodes)
 		
-		var filteredNodes = nodes.filter(this.myFilterNodes);	
-		
-		for( var z=0; z < filteredNodes .length; z++)
-			filteredNodes[z].setVisible=true;
-
 		vis.selectAll("text").remove();
 		
-		if( graphType == "ForceTree") 
-		{
-			links = d3.layout.tree().links(nodes);
-		}
+		//console.log(filteredNodes);
 		
   	// Restart the force layout.
  	 
  	 if( graphType == "ForceTree"  ) 
- 	 force
-      .nodes(nodes)
-      
-      if( graphType == "ForceTree" 
-      			&& ! aDocument.getElementById("hideLinks").checked )
-      force.links(links)
-      
-      if( graphType == "ForceTree" )
-      	force.start().gravity(aDocument.getElementById("gravitySlider").value/100);
-  
+ 	 {
+ 		force.nodes(filteredNodes);
+ 	      
+ 		if(! aDocument.getElementById("hideLinks").checked )
+ 		{
+ 			links = d3.layout.tree().links(filteredNodes);
+ 			force.links(links)  
+ 		}
+ 		else
+ 		{
+ 			links = d3.layout.tree().links([]);
+ 			force.links(links);
+ 		}
+ 		
+ 		
+ 		if(stopOnChild == true || animationOn == true)
+ 			force.start().gravity(aDocument.getElementById("gravitySlider").value/100);
+ 	 }
+ 	 
 	  var node = vis.selectAll("circle.node")
-	      .data(filteredNodes, function(d) {return d.forceTreeNodeID; } )
-	      .style("fill", function(d) { return d.thisNodeColor} )
+	      .data(filteredNodes, function(d) {return d.name; } )
+	      .style("fill", function(d) { return d.parentDataNode.thisNodeColor} )
 	      .style("opacity",aDocument.getElementById("opacitySlider").value/100 );
 	
 	
 	  // Enter any new nodes.
 	 node.enter().append("svg:circle").on("click", this.myClick)
 	      .attr("class", "node")
-	      .attr("cx", 
-					function (d){return thisContext.getAVal( d,true)}
-				)
-	      .attr("cy", 
-					function (d){return thisContext.getAVal( d,false)}
-				)
-	      .attr("r", function(d) {  return d.thisNodeRadius})
-	      .style("fill", function(d) { return d.thisNodeColor}).
+	      .attr("r", function(d) {  return d.parentDataNode.thisNodeRadius})
+	      .style("fill", function(d) { return d.parentDataNode.thisNodeColor}).
 	      style("opacity",aDocument.getElementById("opacitySlider").value/100 ) 
 	     .on("mouseenter", this.myMouseEnter)
 	      .on("mouseleave", this.myMouseLeave)
 	      
+	       node.attr("cx", 
+					function (d){ 
+	    		 				
+	    		 				return thisContext.getAVal( d,true)
+	    		 			}
+	    		 		)
+	      	.attr("cy", 
+	      			
+					function (d){
+	      						
+	      					return thisContext.getAVal( d,false)}
+				)
+	    
+	      
 	      if( graphType == "ForceTree"  )
 	      {
-	      		// sometimes in d3 the parentNode was getting set to null
-	      		// this is an attempt to not let that happen.
 	      		node.call(force.drag);
-	      		node.attr("parentNode", vis);
 	      }
 	      	
 	      function updateNodesLinksText()
 	      {
-	    	  if( stopOnGrandChild)
-	    	  {
-	    		  stopOnChild = true;
-	    		  stopOnGrandChild = false;
-	    	  } else if (stopOnChild)
-	    	  {
-	    		  if( force)
+	    	  //console.log("tick " + dragging);
+	    	  
+	    	  if( ! animationOn && ( stopOnChild == true || dragging == true))
+		  		{
+		  			var dataset = thisContext.getDisplayDataset();
+		  			
+		  			for( var x=0; x < dataset.nodes.length; x++)
+		  			{
+		  				if( ! dataset.nodes[x].userMoved )
+		  				{
+			  				dataset.nodes[x].x = dataset.nodes[x].parentDataNode.xMap[thisID]
+			  				dataset.nodes[x].y = dataset.nodes[x].parentDataNode.yMap[thisID]			  				
+		  				}
+		  				
+		  				if( animationOn == false)
+		  					dataset.nodes[x].fixed = true;
+		  			}
+		  			
+		  		  if( force && animationOn == false  && dragging == false)
 	    			  force.stop();
-	    	  }
-	    	  
-	    	  if( statics.getRepopulatePrimary() && isRunFromTopWindow &&  animationOn  )
-	    	  {
-	    		  for( var x=0; x < nodes.length; x++)
-	    		  {
-	    			  nodes[x].x =nodes[x].xMap[thisID];
-	    			  nodes[x].y= nodes[x].yMap[thisID];
-	    			  
-	    			  //todo: Fixed should be set for each window
-	    			  nodes[x].fixed = false;
-		    		  statics.setRepopulatePrimary(false);
-	    		  }
-	    	  }
-	    	  else if( graphType == "ForceTree"  &&  animationOn)
-	    	  {
-	    		  for( var x=0; x < nodes.length; x++)
-	    		  {
-	    			  nodes[x].xMap[thisID]   = nodes[x].x;
-	    			  nodes[x].yMap[thisID]   = nodes[x].y;
-	    		  }
-	    	  }
-	    	  
-	    	  if( ! isRunFromTopWindow )
-	    	  {
-	    		  statics.setRepopulatePrimary(true);
-	    	  }
-	    	  
-	      	 node.attr("cx", 
-					function (d){return thisContext.getAVal( d,true)}
-				)
+	    		  
+		  		  if( stopOnChild == true)
+		  			  stopOnChild=false;
+
+		  		}
+		  		
+	    	 node.attr("cx", 
+					function (d){ 
+	    		 				
+	    		 				return thisContext.getAVal( d,true)
+	    		 			}
+	    		 		)
 	      	.attr("cy", 
 	      			
 					function (d){
-	      					if(d.fixMeNextTime)
-	      					{
-	      						d.fixed=true;
-	      						d.fixMeNextTime=false;
-	      					}
-	      					
 	      						
-	      		return thisContext.getAVal( d,false)}
+	      					return thisContext.getAVal( d,false)}
 				)
 	    
 		  if ( anyLabels )
@@ -1333,14 +1384,12 @@ this.update = function()
 			
 		if( graphType == "ForceTree"  && ! aDocument.getElementById("hideLinks").checked )
 		{
-				link.attr("x1", function(d) { return d.source.x; })
-	      .attr("x1", function(d) { return d.source.xMap[thisID]; })
-	      .attr("y1", function(d) { return d.source.yMap[thisID]; })
-	      .attr("x2", function(d) { return d.target.xMap[thisID]; })
-	      .attr("y2", function(d) { return d.target.yMap[thisID]; });
+			link.attr("x1", function(d) { return d.source.x; })
+	      .attr("y1", function(d) { return d.source.y; })
+	      .attr("x2", function(d) { return d.target.x; })
+	      .attr("y2", function(d) { return d.target.y; });
 		}
 		
-		  	thisContext.checkForStop();
 	      }
 	      
 	      if( graphType != "ForceTree"  && ! aDocument.getElementById("hideLinks").checked
@@ -1380,20 +1429,30 @@ this.update = function()
 		          addNodeAndChildren(statics.getRoot());
 		    		  
 			}
-			
-	    thisContext.checkForStop();
-		
-		force.on("tick", updateNodesLinksText);
+	    else if(graphType != "ForceTree" )
+	    {
+	    	 vis.selectAll("line").remove();
+	    }
+	      
+	      
+	    if( graphType == "ForceTree")
+	    	force.on("tick", updateNodesLinksText);
 		
 		//force.on("end", updateNodesLinksText);
 	    
-	    // Update the links
-	      	if( graphType == "ForceTree" && ! aDocument.getElementById("hideLinks").checked )
-  		link = vis.selectAll("line.link")
-      .data(links.filter(this.myFilterLinks), function(d) {  return d.target.forceTreeNodeID; }
-      		);
+	    // Update the links	      	
+		if( graphType == "ForceTree" && ! aDocument.getElementById("hideLinks").checked )
+		{
+			link = vis.selectAll("line.link")
+	        .data(links.filter(this.myFilterLinks), function(d) {  return d.target.name; }
+	        		);
+		}
+		
+  		
+//);
 	   
 	  // Enter any new links.
+		//vis.remove("svg:line");
 	  if( graphType == "ForceTree" && ! aDocument.getElementById("hideLinks").checked )
 	  link.enter().insert("svg:line", ".node")
 	      .attr("class", "link")
@@ -1417,10 +1476,10 @@ this.update = function()
 	{
 
     	var text=vis.selectAll("text").data(filteredNodes).enter().append("svg:text")
-  				.text( function (d) {  return d.nodeLabelText; })
+  				.text( function (d) {  return d.parentDataNode.nodeLabelText; })
                  .attr("font-family", "sans-serif")
                  .attr("font-size", aDocument.getElementById("fontAdjust").value + "px")
-                 .attr("fill", function(d) {return  thisContext.getTextColor(d) });
+                 .attr("fill", function(d) {return  thisContext.getTextColor(d.parentDataNode) });
          			 
                     if( graphType != "ForceTree")
 	                {
@@ -1468,8 +1527,7 @@ this.update = function()
   node.exit().remove();
 	}
   	
-  	this.checkForStop();
-  	// the color choosers don't work unless they are initialized first
+	// the color choosers don't work unless they are initialized first
   	// hence they are initialized in the "section" and then moved to the appropriate menu
   	// once everything else has settled in...
 	if( firstUpdate && isRunFromTopWindow) 
@@ -1485,28 +1543,27 @@ this.update = function()
   	firstUpdate = false;
 }
 
-this.checkForStop =function()
-{
-	
-	if ( graphType != "ForceTree" )
-  		force.stop();
-	
-}
 
 this.releaseAllFixed = function()
 {
-	for ( var x=0; x < nodes.length; x++)
+	var displayNodes = this.getDisplayDataset().nodes;
+	
+	for ( var x=0; x < displayNodes.length; x++)
 	{
-		if( ! nodes[x].userMoved)
+		if( ! displayNodes[x].userMoved)
 		{
-			nodes[x].fixed = false;
-			nodes[x].fixMeNextTime=false;
+			displayNodes[x].fixed = false;
+			displayNodes[x].x = displayNodes[x].parentDataNode.xMap[thisID];
+			displayNodes[x].y= displayNodes[x].parentDataNode.yMap[thisID];
 		}
 	}
 	
+	stopOnChild = true;
 	animationOn=true;
-	stopOnGrandChild = false;
-	stopOnChild = false;
+	
+	if(force)
+		force.start();
+	
 	this.redrawScreen();
 }
 
@@ -1526,8 +1583,8 @@ this.getTextColor= function(d)
 
 this.myMouseEnter = function(d)
 {
-	d.x = d.xMap[thisID];
-	d.y = d.yMap[thisID]
+	if( force && animationOn == false && dragging == false)
+		force.stop();
 	
 	if (! aDocument.getElementById("mouseOverHighlights").checked)
 		return;
@@ -1536,7 +1593,9 @@ this.myMouseEnter = function(d)
 	{
 		statics.getHighlightedNode().highlight = false;			
 	}
-		
+	
+	d = d.parentDataNode 
+	
 	statics.setHighlightedNode(d);
 	d.highlight = true;
 	lastSelected = d;
@@ -1556,9 +1615,9 @@ this.myMouseEnter = function(d)
 					&& prop != "yMap" 
 					&& prop != "xMapNoise"
 					&& prop != "yMapNoise" && prop != "highlight" && prop != "nodeLabelText" &&
-						prop != "setVisible" && prop != "thisNodeRadius" && prop != "thisNodeColor" &&
+						prop != "thisNodeRadius" && prop != "thisNodeColor" &&
 						prop != "marked" && prop != "doNotShow" && prop != "listPosition" && prop != "px" &&
-						prop != "py" && prop != "weight" && prop != "aParentNode" && prop != "fixMeNextTime" )
+						prop != "py" && prop != "weight" && prop != "aParentNode" )
 		{
 			var aVal = "" + d[prop];
 			
@@ -1577,6 +1636,9 @@ this.myMouseEnter = function(d)
 
 this.myMouseLeave= function ()
 {
+	if( force && animationOn == false && dragging == false)
+		force.stop();
+	
 	if (! aDocument.getElementById("mouseOverHighlights").checked)
 		return;
 	
@@ -1592,29 +1654,46 @@ this.myMouseLeave= function ()
 
 this.setInitialPositions = function ()
 {
-	var root = statics.getRoot();
-	
-	root.xMap[thisID] =  w / 2.0  + 20;
-	root.yMap[thisID] = h /2.0;
-	
-	var radius = Math.min(w,h)/2;
-	
-	radius = radius - radius * aDocument.getElementById("gravitySlider").value/100;
-		
-	var piTwice= 2* Math.PI ;
-	
-	for( var x=0; x < nodes.length; x++) 
-	{
-		var aRad = (parseFloat(nodes[x].nodeDepth)-1)/(statics.getMaxLevel()) * radius;
-		nodes[x].xMap[thisID]  = root.xMap[thisID]- aRad * Math.cos( piTwice * x/nodes.length) ;
-		nodes[x].yMap[thisID]  = aRad * Math.sin( piTwice * x/nodes.length) + root.yMap[thisID];
-	}
-	
-	root.fixed=true;
+	if( animationOn == false)
+		this.arrangeForcePlot(false);
 }
 
-this.arrangeForcePlot = function(arrangeChildren)
+this.arrangeForcePlot = function(arrangeChildren,lastArrangedParameter)
 {
+	if( ! arrangeChildren)
+		lastArranged = null;
+
+	if( arrangeChildren && lastSelected)
+		lastArranged = lastSelected;
+		
+	var topNode = statics.getRoot();
+	
+	if( lastArrangedParameter )
+	{
+		arrangeChildren = true;
+		topNode = lastArrangedParameter;
+	}
+	else if( arrangeChildren && lastSelected)
+	{
+		topNode = lastSelected;
+	}
+
+	var displayNodes = this.getDisplayDataset().nodes;
+	
+	for( var x=0; x < displayNodes.length; x++)
+	{
+		displayNodes[x].fixed =false;
+		
+		if( arrangeChildren == false)
+			displayNodes[x].userMoved=false
+		
+		if(  arrangeChildren &&  topNode == displayNodes[x].parentDataNode )
+		{
+			displayNodes[x].fixed=true;
+			displayNodes[x].userMoved = true;
+		}
+	}
+	
 	numVisibleArray = [];
 	numAssignedArray = [];
 	
@@ -1626,7 +1705,7 @@ this.arrangeForcePlot = function(arrangeChildren)
 	
 	var localMaxLevel = statics.getMaxLevel()
 	
-	if( arrangeChildren && lastSelected )
+	if( topNode != statics.getRoot())
 	{
 		localMaxLevel =0;
 	}
@@ -1655,19 +1734,14 @@ this.arrangeForcePlot = function(arrangeChildren)
 	{
 		if( nodesToRun[x].doNotShow==false)
 			numVisibleArray[nodesToRun[x].nodeDepth] = numVisibleArray[nodesToRun[x].nodeDepth]+ 1;
-		
-		nodesToRun[x].fixMeNextTime=false;
 	}
-	
-	var root = lastSelected;
 	
 	// if we are not arranging to a child node
 	// the root is at the top of the tree in the center of the screen
-	if( ! root || ! arrangeChildren)
+	if( topNode == statics.getRoot())
 	{
-		root = statics.getRoot();
-		root.xMap[thisID] =  w / 2.0  + 20.0;
-		root.yMap[thisID] = h /2.0;
+		topNode.xMap[thisID] =  w / 2.0  + 20.0;
+		topNode.yMap[thisID] = h /2.0;
 	}
 	
 	var radius = parseFloat( Math.min(w,h))/2.0;
@@ -1679,7 +1753,7 @@ this.arrangeForcePlot = function(arrangeChildren)
 	if(  arrangeChildren &&  lastSelected)
 	{
 		radius = radius / aDocument.getElementById("localGravity").value;
-		localMinLevel = lastSelected.nodeDepth;
+		localMinLevel = topNode.nodeDepth;
 	}
 	
 	localMinLevel = parseFloat(localMinLevel);
@@ -1689,35 +1763,19 @@ this.arrangeForcePlot = function(arrangeChildren)
 	var range = parseFloat( statics.getMaxLevel() - localMinLevel)
 	for( var x=0; x < nodesToRun.length; x++) if( nodesToRun[x].doNotShow==false ) 
 	{
-		nodesToRun[x].fixed=false;
-		nodesToRun[x].userMoved = false;
 		var aPosition = parseFloat(numAssignedArray[nodesToRun[x].nodeDepth])
 				/numVisibleArray[nodesToRun[x].nodeDepth];
 		
 		var aRad = (parseFloat(nodesToRun[x].nodeDepth)- localMinLevel)/range * radius;
-		nodesToRun[x].xMap[thisID] = root.xMap[thisID]- 
+		nodesToRun[x].xMap[thisID] = topNode.xMap[thisID]- 
 			aRad * Math.cos( piTwice * aPosition) ;
-		nodesToRun[x].yMap[thisID]  = aRad * Math.sin( piTwice *  aPosition) + root.yMap[thisID];
+		nodesToRun[x].yMap[thisID]  = aRad * Math.sin( piTwice *  aPosition) + topNode.yMap[thisID];
 		numAssignedArray[nodesToRun[x].nodeDepth] = numAssignedArray[nodesToRun[x].nodeDepth]+ 1;
-		nodesToRun[x].fixMeNextTime= true;
-		nodesToRun[x].x = nodesToRun[x].xMap[thisID];
-		nodesToRun[x].y = nodesToRun[x].yMap[thisID];
-	}
-	
-	if(  arrangeChildren &&  lastSelected)
-	{
-		lastSelected.fixed=true;
-		lastSelected.userMoved = true;
 	}
 	
 	animationOn = false;
-	stopOnGrandChild = true;
-	stopOnChild = false;
-
-	if( force ) 
-	{
-		force.start().gravity(aDocument.getElementById("gravitySlider").value/100);
-	}
+	stopOnChild = true;
+	
 }
 
 
@@ -1851,15 +1909,12 @@ this.hideAndShow = function(d)
 		d=statics.getHighlightedNode();
 	
 	if( ! d)
-		return;
+		d = statics.getRoot();
 	
 	statics.setHighlightReverse( ! statics.getHighlightReverse() );
 	
 	if( statics.getHighlightReverse() == false)
 	{
-		for( var x =0; x < nodes.length; x++)
-			nodes[x].doNotShow=false;
-		
 		this.showOnlyMarked(false);
 	}
 	else
@@ -1869,7 +1924,7 @@ this.hideAndShow = function(d)
 	
 		thisContext.highlightAllChildren(d);
 		thisContext.highlightAllParents(d);
-	}
+	}	
 }
 
 
@@ -1952,9 +2007,6 @@ this.flatten= function ()
   nodes = myNodes;
   statics.setNodes(nodes);
   
-  for( var x=0; x < nodes.length; x++)
-	  nodes[x].fixMeNextTime =false;
-  
   this.setInitialPositions();
   this.addDynamicMenuContent();
   
@@ -1970,7 +2022,6 @@ if( isRunFromTopWindow )
 	d3.json(getQueryStrings(thisWindow)["FileToOpen"], function(json) 
 	{
   		statics.setRoot(json);
-  		statics.getRoot().fixed = true;
   	thisContext.initialize();  // wait until the data is loaded to initialize
 	});
 }
@@ -1978,6 +2029,5 @@ else
 {
 	thisContext.initialize();  // data is already loaded - ok to initialize.
 }
-
 
 }
