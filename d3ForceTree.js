@@ -150,7 +150,6 @@ var animationOn=false;
 var stopOnChild = false;
 var displayDataset= null; 
 var dragging =false;
-var lastArranged = null;
 
 
 this.addNoise = function()
@@ -845,10 +844,7 @@ this.getLabelText = function(d)
 		}
 	}
 	
-	if(  aDocument.getElementById("cicleLabelScheme").checked  && graphType=="ForceTree" || 
-			((thisDocument.getElementById("scatterX").value == "circleX" || 
-					thisDocument.getElementById("scatterX").value == "circleY" ) || 
-					(thisDocument.getElementById("scatterY").value == "circleX" || thisDocument.getElementById("scatterY").value == "circleY" )))
+	if(  aDocument.getElementById("cicleLabelScheme").checked  && graphType=="ForceTree" )
 	{
 
 			if( circleDraws[d.nodeDepth] ==  returnString)	
@@ -1254,11 +1250,9 @@ this.update = function()
 	 	}	
 		
 		var filteredNodes = thisContext.getDisplayDataset().nodes.filter(thisContext.myFilterNodes)
-		
 		vis.selectAll("text").remove();
 		
-		//console.log(filteredNodes);
-		
+	
   	// Restart the force layout.
  	 
  	 if( graphType == "ForceTree"  ) 
@@ -1658,22 +1652,11 @@ this.setInitialPositions = function ()
 		this.arrangeForcePlot(false);
 }
 
-this.arrangeForcePlot = function(arrangeChildren,lastArrangedParameter)
-{
-	if( ! arrangeChildren)
-		lastArranged = null;
-
-	if( arrangeChildren && lastSelected)
-		lastArranged = lastSelected;
-		
+this.arrangeForcePlot = function(arrangeChildren)
+{		
 	var topNode = statics.getRoot();
 	
-	if( lastArrangedParameter )
-	{
-		arrangeChildren = true;
-		topNode = lastArrangedParameter;
-	}
-	else if( arrangeChildren && lastSelected)
+	if( arrangeChildren && lastSelected)
 	{
 		topNode = lastSelected;
 	}
