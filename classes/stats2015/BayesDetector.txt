@@ -1,0 +1,47 @@
+
+# prob you are a cylon; prob you are not a cylon
+probCylon <-  c(0.01,0.99)
+
+# p(positive) , p(negative)
+likelihoodGivenCylon <- c( 0.9, 0.1)
+likelihoodGivenNotCylon<- c(0.05,0.95)
+
+getDataFromLikelihood <- function( likelihood, numPoints) 
+{
+	d <- vector(mode="integer", length=numPoints);
+	
+	for( i in 1:numPoints ) 
+	{
+		if( runif(1) <= likelihood[1] )
+		{
+			d[i] <- 1;
+		}
+		else
+		{
+			d[i] <- 2;
+		}
+			
+	}
+	
+	return(d)
+}
+
+#get our simulated data
+data <- getDataFromLikelihood( likelihoodGivenCylon, 50)
+probCylonVals <- vector();
+
+
+titleStr <- ""
+for( i in 1:length(data))
+{
+	probCylonVals[i] <- probCylon[1];
+	
+	denom <- probCylon[1] * likelihoodGivenCylon[data[i]] + probCylon[2] * likelihoodGivenNotCylon[data[i]];
+	
+	probCylon[1] = probCylon[1] * likelihoodGivenCylon[data[i]] / denom;
+	probCylon[2] = probCylon[2] * likelihoodGivenNotCylon[data[i]] / denom;
+	
+	titleStr <- paste(titleStr,data[i],sep="")
+	plot(1:i,probCylonVals, main = titleStr,ylim=c(0,1),xlim=c(1,length(data)+1))
+	Sys.sleep(1);
+}
