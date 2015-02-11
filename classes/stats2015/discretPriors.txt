@@ -1,0 +1,41 @@
+rm(list=ls())
+thetas <- c(.3, .5,.7) #probability of heads
+priors <- c(1/3,1/3,1/3)
+
+# prob(head)
+realTheta = .6
+
+if( length(thetas) != length(priors ))
+	stop("logic error")
+
+title <- paste('Flip 0 with p(head) =', realTheta)
+plot(thetas,priors, main = title,ylim=c(0,1));
+flips <- ""
+
+for( x in 1:50 )
+{
+	flip = ifelse( runif(1) <= realTheta , "H", "T" );
+
+	flips <- paste(flips, flip, sep="" )
+
+	py <- 0;
+
+	for(i in 1:length(thetas) ) 
+	{
+		py <- py + priors[i] * ifelse( flip == "H", thetas[i], 1-thetas[i] )
+	}
+	
+	for( i in 1:length(thetas) )
+	{
+		priors[i] = ifelse(flip=="H", thetas[i], 1-thetas[i]) * priors[i] / py;
+	}
+	
+	title <- paste('Flip ', x, ' with p(head) =', realTheta, '\n', flips)
+	plot(thetas,priors, main = title,ylim=c(0,1))
+	cat( "Flip number ", x, "\n");
+	print(flips);
+	cat(priors, "\n");
+	cat("\n");
+	Sys.sleep(1);
+}
+
