@@ -1,0 +1,1703 @@
+{
+"numSeqs": 0,
+"rpdLevel": "root",
+"rdptaxa": "root"
+,"children": [
+{
+"numSeqs": 43,
+"rpdLevel": "phylum",
+"rdptaxa": "Crenarchaeota"
+,"children": [
+{
+"numSeqs": 43,
+"rpdLevel": "class",
+"rdptaxa": "Thermoprotei"
+,"children": [
+{
+"numSeqs": 4,
+"rpdLevel": "order",
+"rdptaxa": "Desulfurococcales"
+,"children": [
+{
+"numSeqs": 4,
+"rpdLevel": "family",
+"rdptaxa": "Pyrodictiaceae"
+,"children": [
+{
+"numSeqs": 4,
+"rpdLevel": "genus",
+"rdptaxa": "Pyrolobus"
+}
+]
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 710007,
+"rpdLevel": "phylum",
+"rdptaxa": "Proteobacteria"
+,"children": [
+{
+"numSeqs": 9563,
+"rpdLevel": "class",
+"rdptaxa": "Alphaproteobacteria"
+,"children": [
+{
+"numSeqs": 94,
+"rpdLevel": "order",
+"rdptaxa": "Caulobacterales"
+,"children": [
+{
+"numSeqs": 94,
+"rpdLevel": "family",
+"rdptaxa": "Caulobacteraceae"
+,"children": [
+{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Phenylobacterium"
+}
+,{
+"numSeqs": 8,
+"rpdLevel": "genus",
+"rdptaxa": "Caulobacter"
+}
+,{
+"numSeqs": 85,
+"rpdLevel": "genus",
+"rdptaxa": "Brevundimonas"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 921,
+"rpdLevel": "order",
+"rdptaxa": "Sphingomonadales"
+,"children": [
+{
+"numSeqs": 914,
+"rpdLevel": "family",
+"rdptaxa": "Sphingomonadaceae"
+,"children": [
+{
+"numSeqs": 23,
+"rpdLevel": "genus",
+"rdptaxa": "Sphingobium"
+}
+,{
+"numSeqs": 461,
+"rpdLevel": "genus",
+"rdptaxa": "Sphingomonas"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 271,
+"rpdLevel": "order",
+"rdptaxa": "Rhodospirillales"
+,"children": [
+{
+"numSeqs": 271,
+"rpdLevel": "family",
+"rdptaxa": "Rhodospirillaceae"
+,"children": [
+{
+"numSeqs": 267,
+"rpdLevel": "genus",
+"rdptaxa": "Skermanella"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 5989,
+"rpdLevel": "order",
+"rdptaxa": "Rhizobiales"
+,"children": [
+{
+"numSeqs": 2270,
+"rpdLevel": "family",
+"rdptaxa": "Aurantimonadaceae"
+,"children": [
+{
+"numSeqs": 2091,
+"rpdLevel": "genus",
+"rdptaxa": "Aureimonas"
+}
+]
+}
+,{
+"numSeqs": 2637,
+"rpdLevel": "family",
+"rdptaxa": "Methylobacteriaceae"
+,"children": [
+{
+"numSeqs": 2413,
+"rpdLevel": "genus",
+"rdptaxa": "Methylobacterium"
+}
+,{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Psychroglaciecola"
+}
+]
+}
+,{
+"numSeqs": 3,
+"rpdLevel": "family",
+"rdptaxa": "Rhizobiales_incertae_sedis"
+,"children": [
+{
+"numSeqs": 3,
+"rpdLevel": "genus",
+"rdptaxa": "Vasilyevaea"
+}
+]
+}
+,{
+"numSeqs": 42,
+"rpdLevel": "family",
+"rdptaxa": "Bradyrhizobiaceae"
+,"children": [
+{
+"numSeqs": 27,
+"rpdLevel": "genus",
+"rdptaxa": "Bradyrhizobium"
+}
+,{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Afipia"
+}
+]
+}
+,{
+"numSeqs": 67,
+"rpdLevel": "family",
+"rdptaxa": "Phyllobacteriaceae"
+,"children": [
+{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Pseudaminobacter"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 1491,
+"rpdLevel": "order",
+"rdptaxa": "Rhodobacterales"
+,"children": [
+{
+"numSeqs": 1491,
+"rpdLevel": "family",
+"rdptaxa": "Rhodobacteraceae"
+,"children": [
+{
+"numSeqs": 363,
+"rpdLevel": "genus",
+"rdptaxa": "Rubellimicrobium"
+}
+,{
+"numSeqs": 388,
+"rpdLevel": "genus",
+"rdptaxa": "Paracoccus"
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 1,
+"rpdLevel": "class",
+"rdptaxa": "Epsilonproteobacteria"
+,"children": [
+{
+"numSeqs": 1,
+"rpdLevel": "order",
+"rdptaxa": "Campylobacterales"
+,"children": [
+{
+"numSeqs": 1,
+"rpdLevel": "family",
+"rdptaxa": "Campylobacteraceae"
+,"children": [
+{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Campylobacter"
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 8575,
+"rpdLevel": "class",
+"rdptaxa": "Betaproteobacteria"
+,"children": [
+{
+"numSeqs": 518,
+"rpdLevel": "order",
+"rdptaxa": "Rhodocyclales"
+,"children": [
+{
+"numSeqs": 518,
+"rpdLevel": "family",
+"rdptaxa": "Rhodocyclaceae"
+,"children": [
+{
+"numSeqs": 506,
+"rpdLevel": "genus",
+"rdptaxa": "Azospira"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 5675,
+"rpdLevel": "order",
+"rdptaxa": "Burkholderiales"
+,"children": [
+{
+"numSeqs": 1927,
+"rpdLevel": "family",
+"rdptaxa": "Comamonadaceae"
+,"children": [
+{
+"numSeqs": 12,
+"rpdLevel": "genus",
+"rdptaxa": "Hydrogenophaga"
+}
+,{
+"numSeqs": 800,
+"rpdLevel": "genus",
+"rdptaxa": "Pelomonas"
+}
+,{
+"numSeqs": 333,
+"rpdLevel": "genus",
+"rdptaxa": "Comamonas"
+}
+,{
+"numSeqs": 49,
+"rpdLevel": "genus",
+"rdptaxa": "Delftia"
+}
+,{
+"numSeqs": 657,
+"rpdLevel": "genus",
+"rdptaxa": "Schlegelella"
+}
+]
+}
+,{
+"numSeqs": 259,
+"rpdLevel": "family",
+"rdptaxa": "Alcaligenaceae"
+,"children": [
+{
+"numSeqs": 196,
+"rpdLevel": "genus",
+"rdptaxa": "Achromobacter"
+}
+]
+}
+,{
+"numSeqs": 872,
+"rpdLevel": "family",
+"rdptaxa": "Burkholderiaceae"
+,"children": [
+{
+"numSeqs": 11,
+"rpdLevel": "genus",
+"rdptaxa": "Burkholderia"
+}
+,{
+"numSeqs": 701,
+"rpdLevel": "genus",
+"rdptaxa": "Ralstonia"
+}
+,{
+"numSeqs": 157,
+"rpdLevel": "genus",
+"rdptaxa": "Limnobacter"
+}
+]
+}
+,{
+"numSeqs": 743,
+"rpdLevel": "family",
+"rdptaxa": "Sutterellaceae"
+,"children": [
+{
+"numSeqs": 529,
+"rpdLevel": "genus",
+"rdptaxa": "Parasutterella"
+}
+,{
+"numSeqs": 34,
+"rpdLevel": "genus",
+"rdptaxa": "Sutterella"
+}
+]
+}
+,{
+"numSeqs": 1265,
+"rpdLevel": "family",
+"rdptaxa": "Oxalobacteraceae"
+,"children": [
+{
+"numSeqs": 1028,
+"rpdLevel": "genus",
+"rdptaxa": "Massilia"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 1680,
+"rpdLevel": "order",
+"rdptaxa": "Neisseriales"
+,"children": [
+{
+"numSeqs": 1680,
+"rpdLevel": "family",
+"rdptaxa": "Neisseriaceae"
+,"children": [
+{
+"numSeqs": 774,
+"rpdLevel": "genus",
+"rdptaxa": "Neisseria"
+}
+,{
+"numSeqs": 79,
+"rpdLevel": "genus",
+"rdptaxa": "Morococcus"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 85,
+"rpdLevel": "order",
+"rdptaxa": "Hydrogenophilales"
+,"children": [
+{
+"numSeqs": 85,
+"rpdLevel": "family",
+"rdptaxa": "Hydrogenophilaceae"
+,"children": [
+{
+"numSeqs": 85,
+"rpdLevel": "genus",
+"rdptaxa": "Hydrogenophilus"
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 1,
+"rpdLevel": "class",
+"rdptaxa": "Deltaproteobacteria"
+}
+,{
+"numSeqs": 690298,
+"rpdLevel": "class",
+"rdptaxa": "Gammaproteobacteria"
+,"children": [
+{
+"numSeqs": 8766,
+"rpdLevel": "order",
+"rdptaxa": "Pseudomonadales"
+,"children": [
+{
+"numSeqs": 6437,
+"rpdLevel": "family",
+"rdptaxa": "Pseudomonadaceae"
+,"children": [
+{
+"numSeqs": 10,
+"rpdLevel": "genus",
+"rdptaxa": "Serpens"
+}
+,{
+"numSeqs": 5194,
+"rpdLevel": "genus",
+"rdptaxa": "Pseudomonas"
+}
+]
+}
+,{
+"numSeqs": 2292,
+"rpdLevel": "family",
+"rdptaxa": "Moraxellaceae"
+,"children": [
+{
+"numSeqs": 81,
+"rpdLevel": "genus",
+"rdptaxa": "Alkanindiges"
+}
+,{
+"numSeqs": 1557,
+"rpdLevel": "genus",
+"rdptaxa": "Acinetobacter"
+}
+,{
+"numSeqs": 230,
+"rpdLevel": "genus",
+"rdptaxa": "Enhydrobacter"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 77,
+"rpdLevel": "order",
+"rdptaxa": "Pasteurellales"
+,"children": [
+{
+"numSeqs": 77,
+"rpdLevel": "family",
+"rdptaxa": "Pasteurellaceae"
+,"children": [
+{
+"numSeqs": 3,
+"rpdLevel": "genus",
+"rdptaxa": "Haemophilus"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 63,
+"rpdLevel": "order",
+"rdptaxa": "Aeromonadales"
+,"children": [
+{
+"numSeqs": 63,
+"rpdLevel": "family",
+"rdptaxa": "Aeromonadaceae"
+,"children": [
+{
+"numSeqs": 63,
+"rpdLevel": "genus",
+"rdptaxa": "Tolumonas"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 192,
+"rpdLevel": "order",
+"rdptaxa": "Xanthomonadales"
+,"children": [
+{
+"numSeqs": 192,
+"rpdLevel": "family",
+"rdptaxa": "Xanthomonadaceae"
+,"children": [
+{
+"numSeqs": 175,
+"rpdLevel": "genus",
+"rdptaxa": "Stenotrophomonas"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 678203,
+"rpdLevel": "order",
+"rdptaxa": "Enterobacteriales"
+,"children": [
+{
+"numSeqs": 678203,
+"rpdLevel": "family",
+"rdptaxa": "Enterobacteriaceae"
+,"children": [
+{
+"numSeqs": 2,
+"rpdLevel": "genus",
+"rdptaxa": "Samsonia"
+}
+,{
+"numSeqs": 22860,
+"rpdLevel": "genus",
+"rdptaxa": "Proteus"
+}
+,{
+"numSeqs": 10,
+"rpdLevel": "genus",
+"rdptaxa": "Erwinia"
+}
+,{
+"numSeqs": 42,
+"rpdLevel": "genus",
+"rdptaxa": "Pragia"
+}
+,{
+"numSeqs": 2,
+"rpdLevel": "genus",
+"rdptaxa": "Hafnia"
+}
+,{
+"numSeqs": 105,
+"rpdLevel": "genus",
+"rdptaxa": "Pluralibacter"
+}
+,{
+"numSeqs": 2773,
+"rpdLevel": "genus",
+"rdptaxa": "Citrobacter"
+}
+,{
+"numSeqs": 2,
+"rpdLevel": "genus",
+"rdptaxa": "Kosakonia"
+}
+,{
+"numSeqs": 9,
+"rpdLevel": "genus",
+"rdptaxa": "Leclercia"
+}
+,{
+"numSeqs": 5,
+"rpdLevel": "genus",
+"rdptaxa": "Shimwellia"
+}
+,{
+"numSeqs": 121,
+"rpdLevel": "genus",
+"rdptaxa": "Morganella"
+}
+,{
+"numSeqs": 583,
+"rpdLevel": "genus",
+"rdptaxa": "Enterobacter"
+}
+,{
+"numSeqs": 7095,
+"rpdLevel": "genus",
+"rdptaxa": "Pseudocitrobacter"
+}
+,{
+"numSeqs": 276,
+"rpdLevel": "genus",
+"rdptaxa": "Serratia"
+}
+,{
+"numSeqs": 3,
+"rpdLevel": "genus",
+"rdptaxa": "Buttiauxella"
+}
+,{
+"numSeqs": 32,
+"rpdLevel": "genus",
+"rdptaxa": "Mangrovibacter"
+}
+,{
+"numSeqs": 20416,
+"rpdLevel": "genus",
+"rdptaxa": "Klebsiella"
+}
+,{
+"numSeqs": 347,
+"rpdLevel": "genus",
+"rdptaxa": "Yokenella"
+}
+,{
+"numSeqs": 12449,
+"rpdLevel": "genus",
+"rdptaxa": "Raoultella"
+}
+,{
+"numSeqs": 2,
+"rpdLevel": "genus",
+"rdptaxa": "Lelliottia"
+}
+,{
+"numSeqs": 3,
+"rpdLevel": "genus",
+"rdptaxa": "Obesumbacterium"
+}
+,{
+"numSeqs": 50,
+"rpdLevel": "genus",
+"rdptaxa": "Cosenzaea"
+}
+,{
+"numSeqs": 2,
+"rpdLevel": "genus",
+"rdptaxa": "Budvicia"
+}
+,{
+"numSeqs": 88317,
+"rpdLevel": "genus",
+"rdptaxa": "Escherichia/Shigella"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 202,
+"rpdLevel": "order",
+"rdptaxa": "Oceanospirillales"
+,"children": [
+{
+"numSeqs": 200,
+"rpdLevel": "family",
+"rdptaxa": "Halomonadaceae"
+,"children": [
+{
+"numSeqs": 97,
+"rpdLevel": "genus",
+"rdptaxa": "Halomonas"
+}
+]
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 309972,
+"rpdLevel": "phylum",
+"rdptaxa": "Fusobacteria"
+,"children": [
+{
+"numSeqs": 309972,
+"rpdLevel": "class",
+"rdptaxa": "Fusobacteriia"
+,"children": [
+{
+"numSeqs": 309972,
+"rpdLevel": "order",
+"rdptaxa": "Fusobacteriales"
+,"children": [
+{
+"numSeqs": 46769,
+"rpdLevel": "family",
+"rdptaxa": "Fusobacteriaceae"
+,"children": [
+{
+"numSeqs": 46712,
+"rpdLevel": "genus",
+"rdptaxa": "Fusobacterium"
+}
+]
+}
+,{
+"numSeqs": 261950,
+"rpdLevel": "family",
+"rdptaxa": "Leptotrichiaceae"
+,"children": [
+{
+"numSeqs": 259696,
+"rpdLevel": "genus",
+"rdptaxa": "Sneathia"
+}
+]
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 2184,
+"rpdLevel": "phylum",
+"rdptaxa": "Cyanobacteria/Chloroplast"
+,"children": [
+{
+"numSeqs": 2164,
+"rpdLevel": "class",
+"rdptaxa": "Chloroplast"
+}
+]
+}
+,{
+"numSeqs": 25,
+"rpdLevel": "phylum",
+"rdptaxa": "Acidobacteria"
+,"children": [
+{
+"numSeqs": 20,
+"rpdLevel": "class",
+"rdptaxa": "Acidobacteria_Gp3"
+}
+,{
+"numSeqs": 1,
+"rpdLevel": "class",
+"rdptaxa": "Acidobacteria_Gp5"
+}
+]
+}
+,{
+"numSeqs": 159649,
+"rpdLevel": "phylum",
+"rdptaxa": "Actinobacteria"
+,"children": [
+{
+"numSeqs": 159642,
+"rpdLevel": "class",
+"rdptaxa": "Actinobacteria"
+,"children": [
+{
+"numSeqs": 156488,
+"rpdLevel": "order",
+"rdptaxa": "Actinomycetales"
+,"children": [
+{
+"numSeqs": 214,
+"rpdLevel": "family",
+"rdptaxa": "Brevibacteriaceae"
+,"children": [
+{
+"numSeqs": 214,
+"rpdLevel": "genus",
+"rdptaxa": "Brevibacterium"
+}
+]
+}
+,{
+"numSeqs": 549,
+"rpdLevel": "family",
+"rdptaxa": "Promicromonosporaceae"
+,"children": [
+{
+"numSeqs": 549,
+"rpdLevel": "genus",
+"rdptaxa": "Cellulosimicrobium"
+}
+]
+}
+,{
+"numSeqs": 269,
+"rpdLevel": "family",
+"rdptaxa": "Intrasporangiaceae"
+,"children": [
+{
+"numSeqs": 266,
+"rpdLevel": "genus",
+"rdptaxa": "Janibacter"
+}
+]
+}
+,{
+"numSeqs": 2996,
+"rpdLevel": "family",
+"rdptaxa": "Micrococcaceae"
+,"children": [
+{
+"numSeqs": 441,
+"rpdLevel": "genus",
+"rdptaxa": "Rothia"
+}
+,{
+"numSeqs": 18,
+"rpdLevel": "genus",
+"rdptaxa": "Arthrobacter"
+}
+,{
+"numSeqs": 817,
+"rpdLevel": "genus",
+"rdptaxa": "Micrococcus"
+}
+,{
+"numSeqs": 1656,
+"rpdLevel": "genus",
+"rdptaxa": "Kocuria"
+}
+]
+}
+,{
+"numSeqs": 1369,
+"rpdLevel": "family",
+"rdptaxa": "Nocardioidaceae"
+,"children": [
+{
+"numSeqs": 138,
+"rpdLevel": "genus",
+"rdptaxa": "Nocardioides"
+}
+,{
+"numSeqs": 87,
+"rpdLevel": "genus",
+"rdptaxa": "Marmoricola"
+}
+]
+}
+,{
+"numSeqs": 3546,
+"rpdLevel": "family",
+"rdptaxa": "Actinomycetaceae"
+,"children": [
+{
+"numSeqs": 617,
+"rpdLevel": "genus",
+"rdptaxa": "Varibaculum"
+}
+,{
+"numSeqs": 2504,
+"rpdLevel": "genus",
+"rdptaxa": "Actinomyces"
+}
+,{
+"numSeqs": 389,
+"rpdLevel": "genus",
+"rdptaxa": "Mobiluncus"
+}
+]
+}
+,{
+"numSeqs": 644,
+"rpdLevel": "family",
+"rdptaxa": "Micromonosporaceae"
+,"children": [
+{
+"numSeqs": 14,
+"rpdLevel": "genus",
+"rdptaxa": "Actinoplanes"
+}
+]
+}
+,{
+"numSeqs": 370,
+"rpdLevel": "family",
+"rdptaxa": "Nocardiaceae"
+,"children": [
+{
+"numSeqs": 355,
+"rpdLevel": "genus",
+"rdptaxa": "Rhodococcus"
+}
+]
+}
+,{
+"numSeqs": 464,
+"rpdLevel": "family",
+"rdptaxa": "Dietziaceae"
+,"children": [
+{
+"numSeqs": 464,
+"rpdLevel": "genus",
+"rdptaxa": "Dietzia"
+}
+]
+}
+,{
+"numSeqs": 8568,
+"rpdLevel": "family",
+"rdptaxa": "Corynebacteriaceae"
+,"children": [
+{
+"numSeqs": 8452,
+"rpdLevel": "genus",
+"rdptaxa": "Corynebacterium"
+}
+,{
+"numSeqs": 5,
+"rpdLevel": "genus",
+"rdptaxa": "Turicella"
+}
+]
+}
+,{
+"numSeqs": 1421,
+"rpdLevel": "family",
+"rdptaxa": "Microbacteriaceae"
+,"children": [
+{
+"numSeqs": 315,
+"rpdLevel": "genus",
+"rdptaxa": "Leucobacter"
+}
+,{
+"numSeqs": 1029,
+"rpdLevel": "genus",
+"rdptaxa": "Microbacterium"
+}
+]
+}
+,{
+"numSeqs": 5116,
+"rpdLevel": "family",
+"rdptaxa": "Dermabacteraceae"
+,"children": [
+{
+"numSeqs": 922,
+"rpdLevel": "genus",
+"rdptaxa": "Dermabacter"
+}
+,{
+"numSeqs": 4001,
+"rpdLevel": "genus",
+"rdptaxa": "Brachybacterium"
+}
+]
+}
+,{
+"numSeqs": 120,
+"rpdLevel": "family",
+"rdptaxa": "Pseudonocardiaceae"
+,"children": [
+{
+"numSeqs": 18,
+"rpdLevel": "genus",
+"rdptaxa": "Pseudonocardia"
+}
+]
+}
+,{
+"numSeqs": 113,
+"rpdLevel": "family",
+"rdptaxa": "Dermacoccaceae"
+,"children": [
+{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Yimella"
+}
+,{
+"numSeqs": 50,
+"rpdLevel": "genus",
+"rdptaxa": "Kytococcus"
+}
+]
+}
+,{
+"numSeqs": 113306,
+"rpdLevel": "family",
+"rdptaxa": "Propionibacteriaceae"
+,"children": [
+{
+"numSeqs": 93,
+"rpdLevel": "genus",
+"rdptaxa": "Friedmanniella"
+}
+,{
+"numSeqs": 112526,
+"rpdLevel": "genus",
+"rdptaxa": "Propionibacterium"
+}
+]
+}
+,{
+"numSeqs": 33,
+"rpdLevel": "family",
+"rdptaxa": "Mycobacteriaceae"
+,"children": [
+{
+"numSeqs": 33,
+"rpdLevel": "genus",
+"rdptaxa": "Mycobacterium"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 647,
+"rpdLevel": "order",
+"rdptaxa": "Bifidobacteriales"
+,"children": [
+{
+"numSeqs": 647,
+"rpdLevel": "family",
+"rdptaxa": "Bifidobacteriaceae"
+,"children": [
+{
+"numSeqs": 231,
+"rpdLevel": "genus",
+"rdptaxa": "Bifidobacterium"
+}
+,{
+"numSeqs": 399,
+"rpdLevel": "genus",
+"rdptaxa": "Gardnerella"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 92,
+"rpdLevel": "order",
+"rdptaxa": "Solirubrobacterales"
+,"children": [
+{
+"numSeqs": 72,
+"rpdLevel": "family",
+"rdptaxa": "Solirubrobacteraceae"
+,"children": [
+{
+"numSeqs": 72,
+"rpdLevel": "genus",
+"rdptaxa": "Solirubrobacter"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 2130,
+"rpdLevel": "order",
+"rdptaxa": "Coriobacteriales"
+,"children": [
+{
+"numSeqs": 2130,
+"rpdLevel": "family",
+"rdptaxa": "Coriobacteriaceae"
+,"children": [
+{
+"numSeqs": 1515,
+"rpdLevel": "genus",
+"rdptaxa": "Atopobium"
+}
+,{
+"numSeqs": 32,
+"rpdLevel": "genus",
+"rdptaxa": "Enterorhabdus"
+}
+]
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 32937,
+"rpdLevel": "phylum",
+"rdptaxa": "Bacteroidetes"
+,"children": [
+{
+"numSeqs": 30435,
+"rpdLevel": "class",
+"rdptaxa": "Bacteroidia"
+,"children": [
+{
+"numSeqs": 30435,
+"rpdLevel": "order",
+"rdptaxa": "Bacteroidales"
+,"children": [
+{
+"numSeqs": 21522,
+"rpdLevel": "family",
+"rdptaxa": "Prevotellaceae"
+,"children": [
+{
+"numSeqs": 21316,
+"rpdLevel": "genus",
+"rdptaxa": "Prevotella"
+}
+]
+}
+,{
+"numSeqs": 3484,
+"rpdLevel": "family",
+"rdptaxa": "Porphyromonadaceae"
+,"children": [
+{
+"numSeqs": 3212,
+"rpdLevel": "genus",
+"rdptaxa": "Porphyromonas"
+}
+,{
+"numSeqs": 127,
+"rpdLevel": "genus",
+"rdptaxa": "Parabacteroides"
+}
+]
+}
+,{
+"numSeqs": 4369,
+"rpdLevel": "family",
+"rdptaxa": "Bacteroidaceae"
+,"children": [
+{
+"numSeqs": 4369,
+"rpdLevel": "genus",
+"rdptaxa": "Bacteroides"
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 1213,
+"rpdLevel": "class",
+"rdptaxa": "Flavobacteriia"
+,"children": [
+{
+"numSeqs": 1213,
+"rpdLevel": "order",
+"rdptaxa": "Flavobacteriales"
+,"children": [
+{
+"numSeqs": 1210,
+"rpdLevel": "family",
+"rdptaxa": "Flavobacteriaceae"
+,"children": [
+{
+"numSeqs": 100,
+"rpdLevel": "genus",
+"rdptaxa": "Capnocytophaga"
+}
+,{
+"numSeqs": 2,
+"rpdLevel": "genus",
+"rdptaxa": "Epilithonimonas"
+}
+,{
+"numSeqs": 359,
+"rpdLevel": "genus",
+"rdptaxa": "Cloacibacterium"
+}
+,{
+"numSeqs": 174,
+"rpdLevel": "genus",
+"rdptaxa": "Flavobacterium"
+}
+,{
+"numSeqs": 2,
+"rpdLevel": "genus",
+"rdptaxa": "Riemerella"
+}
+,{
+"numSeqs": 228,
+"rpdLevel": "genus",
+"rdptaxa": "Chryseobacterium"
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 115,
+"rpdLevel": "class",
+"rdptaxa": "Sphingobacteriia"
+,"children": [
+{
+"numSeqs": 115,
+"rpdLevel": "order",
+"rdptaxa": "Sphingobacteriales"
+,"children": [
+{
+"numSeqs": 114,
+"rpdLevel": "family",
+"rdptaxa": "Sphingobacteriaceae"
+,"children": [
+{
+"numSeqs": 99,
+"rpdLevel": "genus",
+"rdptaxa": "Pedobacter"
+}
+]
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 557411,
+"rpdLevel": "phylum",
+"rdptaxa": "Tenericutes"
+,"children": [
+{
+"numSeqs": 557411,
+"rpdLevel": "class",
+"rdptaxa": "Mollicutes"
+,"children": [
+{
+"numSeqs": 557261,
+"rpdLevel": "order",
+"rdptaxa": "Mycoplasmatales"
+,"children": [
+{
+"numSeqs": 557261,
+"rpdLevel": "family",
+"rdptaxa": "Mycoplasmataceae"
+,"children": [
+{
+"numSeqs": 544724,
+"rpdLevel": "genus",
+"rdptaxa": "Ureaplasma"
+}
+,{
+"numSeqs": 12462,
+"rpdLevel": "genus",
+"rdptaxa": "Mycoplasma"
+}
+]
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 1316210,
+"rpdLevel": "phylum",
+"rdptaxa": "Firmicutes"
+,"children": [
+{
+"numSeqs": 772349,
+"rpdLevel": "class",
+"rdptaxa": "Bacilli"
+,"children": [
+{
+"numSeqs": 66645,
+"rpdLevel": "order",
+"rdptaxa": "Bacillales"
+,"children": [
+{
+"numSeqs": 18,
+"rpdLevel": "family",
+"rdptaxa": "Planococcaceae"
+,"children": [
+{
+"numSeqs": 15,
+"rpdLevel": "genus",
+"rdptaxa": "Lysinibacillus"
+}
+]
+}
+,{
+"numSeqs": 36549,
+"rpdLevel": "family",
+"rdptaxa": "Staphylococcaceae"
+,"children": [
+{
+"numSeqs": 1088,
+"rpdLevel": "genus",
+"rdptaxa": "Jeotgalicoccus"
+}
+,{
+"numSeqs": 35324,
+"rpdLevel": "genus",
+"rdptaxa": "Staphylococcus"
+}
+]
+}
+,{
+"numSeqs": 393,
+"rpdLevel": "family",
+"rdptaxa": "Paenibacillaceae 1"
+,"children": [
+{
+"numSeqs": 375,
+"rpdLevel": "genus",
+"rdptaxa": "Paenibacillus"
+}
+]
+}
+,{
+"numSeqs": 10,
+"rpdLevel": "family",
+"rdptaxa": "Bacillaceae 2"
+}
+,{
+"numSeqs": 446,
+"rpdLevel": "family",
+"rdptaxa": "Bacillales_Incertae Sedis XI"
+,"children": [
+{
+"numSeqs": 446,
+"rpdLevel": "genus",
+"rdptaxa": "Gemella"
+}
+]
+}
+,{
+"numSeqs": 16490,
+"rpdLevel": "family",
+"rdptaxa": "Bacillaceae 1"
+,"children": [
+{
+"numSeqs": 14468,
+"rpdLevel": "genus",
+"rdptaxa": "Bacillus"
+}
+]
+}
+]
+}
+,{
+"numSeqs": 674266,
+"rpdLevel": "order",
+"rdptaxa": "Lactobacillales"
+,"children": [
+{
+"numSeqs": 1,
+"rpdLevel": "family",
+"rdptaxa": "Leuconostocaceae"
+,"children": [
+{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Leuconostoc"
+}
+]
+}
+,{
+"numSeqs": 296,
+"rpdLevel": "family",
+"rdptaxa": "Aerococcaceae"
+,"children": [
+{
+"numSeqs": 83,
+"rpdLevel": "genus",
+"rdptaxa": "Abiotrophia"
+}
+,{
+"numSeqs": 212,
+"rpdLevel": "genus",
+"rdptaxa": "Aerococcus"
+}
+]
+}
+,{
+"numSeqs": 491426,
+"rpdLevel": "family",
+"rdptaxa": "Lactobacillaceae"
+,"children": [
+{
+"numSeqs": 491382,
+"rpdLevel": "genus",
+"rdptaxa": "Lactobacillus"
+}
+]
+}
+,{
+"numSeqs": 7627,
+"rpdLevel": "family",
+"rdptaxa": "Carnobacteriaceae"
+,"children": [
+{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Catellicoccus"
+}
+,{
+"numSeqs": 7589,
+"rpdLevel": "genus",
+"rdptaxa": "Granulicatella"
+}
+]
+}
+,{
+"numSeqs": 114340,
+"rpdLevel": "family",
+"rdptaxa": "Enterococcaceae"
+,"children": [
+{
+"numSeqs": 112516,
+"rpdLevel": "genus",
+"rdptaxa": "Enterococcus"
+}
+,{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Melissococcus"
+}
+]
+}
+,{
+"numSeqs": 44052,
+"rpdLevel": "family",
+"rdptaxa": "Streptococcaceae"
+,"children": [
+{
+"numSeqs": 1751,
+"rpdLevel": "genus",
+"rdptaxa": "Lactococcus"
+}
+,{
+"numSeqs": 42216,
+"rpdLevel": "genus",
+"rdptaxa": "Streptococcus"
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 1782,
+"rpdLevel": "class",
+"rdptaxa": "Erysipelotrichia"
+,"children": [
+{
+"numSeqs": 1782,
+"rpdLevel": "order",
+"rdptaxa": "Erysipelotrichales"
+,"children": [
+{
+"numSeqs": 1782,
+"rpdLevel": "family",
+"rdptaxa": "Erysipelotrichaceae"
+,"children": [
+{
+"numSeqs": 1313,
+"rpdLevel": "genus",
+"rdptaxa": "Erysipelotrichaceae_incertae_sedis"
+}
+,{
+"numSeqs": 164,
+"rpdLevel": "genus",
+"rdptaxa": "Bulleidia"
+}
+,{
+"numSeqs": 140,
+"rpdLevel": "genus",
+"rdptaxa": "Turicibacter"
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 412654,
+"rpdLevel": "class",
+"rdptaxa": "Clostridia"
+,"children": [
+{
+"numSeqs": 411520,
+"rpdLevel": "order",
+"rdptaxa": "Clostridiales"
+,"children": [
+{
+"numSeqs": 3372,
+"rpdLevel": "family",
+"rdptaxa": "Eubacteriaceae"
+,"children": [
+{
+"numSeqs": 3308,
+"rpdLevel": "genus",
+"rdptaxa": "Eubacterium"
+}
+]
+}
+,{
+"numSeqs": 3121,
+"rpdLevel": "family",
+"rdptaxa": "Lachnospiraceae"
+,"children": [
+{
+"numSeqs": 24,
+"rpdLevel": "genus",
+"rdptaxa": "Mobilitalea"
+}
+,{
+"numSeqs": 3,
+"rpdLevel": "genus",
+"rdptaxa": "Blautia"
+}
+,{
+"numSeqs": 760,
+"rpdLevel": "genus",
+"rdptaxa": "Anaerostipes"
+}
+,{
+"numSeqs": 172,
+"rpdLevel": "genus",
+"rdptaxa": "Robinsoniella"
+}
+,{
+"numSeqs": 50,
+"rpdLevel": "genus",
+"rdptaxa": "Dorea"
+}
+]
+}
+,{
+"numSeqs": 52930,
+"rpdLevel": "family",
+"rdptaxa": "Peptostreptococcaceae"
+,"children": [
+{
+"numSeqs": 44020,
+"rpdLevel": "genus",
+"rdptaxa": "Clostridium XI"
+}
+,{
+"numSeqs": 2,
+"rpdLevel": "genus",
+"rdptaxa": "Intestinibacter"
+}
+,{
+"numSeqs": 679,
+"rpdLevel": "genus",
+"rdptaxa": "Peptostreptococcus"
+}
+,{
+"numSeqs": 210,
+"rpdLevel": "genus",
+"rdptaxa": "Filifactor"
+}
+]
+}
+,{
+"numSeqs": 324059,
+"rpdLevel": "family",
+"rdptaxa": "Clostridiaceae 1"
+,"children": [
+{
+"numSeqs": 257208,
+"rpdLevel": "genus",
+"rdptaxa": "Clostridium sensu stricto"
+}
+,{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Anaerobacter"
+}
+,{
+"numSeqs": 2,
+"rpdLevel": "genus",
+"rdptaxa": "Oceanirhabdus"
+}
+]
+}
+,{
+"numSeqs": 7379,
+"rpdLevel": "family",
+"rdptaxa": "Clostridiales_Incertae Sedis XI"
+,"children": [
+{
+"numSeqs": 3181,
+"rpdLevel": "genus",
+"rdptaxa": "Finegoldia"
+}
+,{
+"numSeqs": 7,
+"rpdLevel": "genus",
+"rdptaxa": "Parvimonas"
+}
+,{
+"numSeqs": 1,
+"rpdLevel": "genus",
+"rdptaxa": "Ezakiella"
+}
+,{
+"numSeqs": 4128,
+"rpdLevel": "genus",
+"rdptaxa": "Anaerococcus"
+}
+]
+}
+,{
+"numSeqs": 1168,
+"rpdLevel": "family",
+"rdptaxa": "Peptoniphilaceae"
+,"children": [
+{
+"numSeqs": 1122,
+"rpdLevel": "genus",
+"rdptaxa": "Peptoniphilus"
+}
+]
+}
+,{
+"numSeqs": 460,
+"rpdLevel": "family",
+"rdptaxa": "Clostridiales_Incertae Sedis XIII"
+,"children": [
+{
+"numSeqs": 460,
+"rpdLevel": "genus",
+"rdptaxa": "Mogibacterium"
+}
+]
+}
+]
+}
+]
+}
+,{
+"numSeqs": 96169,
+"rpdLevel": "class",
+"rdptaxa": "Negativicutes"
+,"children": [
+{
+"numSeqs": 96169,
+"rpdLevel": "order",
+"rdptaxa": "Selenomonadales"
+,"children": [
+{
+"numSeqs": 95881,
+"rpdLevel": "family",
+"rdptaxa": "Veillonellaceae"
+,"children": [
+{
+"numSeqs": 91804,
+"rpdLevel": "genus",
+"rdptaxa": "Veillonella"
+}
+,{
+"numSeqs": 531,
+"rpdLevel": "genus",
+"rdptaxa": "Dialister"
+}
+,{
+"numSeqs": 246,
+"rpdLevel": "genus",
+"rdptaxa": "Megasphaera"
+}
+,{
+"numSeqs": 167,
+"rpdLevel": "genus",
+"rdptaxa": "Allisonella"
+}
+]
+}
+]
+}
+]
+}
+]
+}
+]
+}
