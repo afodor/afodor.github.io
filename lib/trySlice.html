@@ -251,12 +251,18 @@ window.tryImage = function(buffPosition)
 			 $('#bigTable tbody').on('click', 'tr', function () 
 			 {
         		data = table.row( this ).data();
+        		var id = data["id"]
+        		
         		var taxa = data["rdptaxa"]
         		var buffPosition = window.tableMap[taxa]
         		
         		window.tryImage(buffPosition)
         		
-        		var aNode = window.flats["rdptaxa"] == data["rdptaxa"]
+        		var aNode = window.flats[id] 
+        		console.log(data)
+        		console.log(taxa)
+        		console.log(aNode)
+        		window.centerNode = aNode;
         		
         		var event = new CustomEvent("recenter", {'node': aNode});
         		dispatchEvent(event);
