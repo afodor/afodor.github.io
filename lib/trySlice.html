@@ -1,0 +1,192 @@
+
+<input type="file" id="files" name="files[]" /><br>
+
+<output id="list"></output>
+<img id="image"/><br><br>
+<table id="bigTable" class="display" cellspacing="0" width="100%"></table>
+
+<script src="jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="jquery.dataTables.js"></script>    
+<script type="text/javascript" charset="utf8" src="d3.v3.js"></script>    
+
+<script>
+
+window.globalID = 1;
+
+// Returns a list of all nodes under the root.
+window.flatten= function (root, parent) 
+{
+  var myNodes = [];
+  
+  function addNodeAndChildren( aNode,parent) 
+  {
+	if( aNode != null) 
+	{
+		myNodes.push(aNode);
+		aNode.id = window.globalID
+		window.globalID++;
+		
+		if(parent!= null) 
+			aNode.parentId = parent.id;
+		
+		if( aNode.children != null)
+			for( var x=0; x < aNode.children.length; x++)
+			{
+				addNodeAndChildren(aNode.children[x], aNode)
+			}		
+		}
+	}
+
+  root.parentId= 0;  
+  addNodeAndChildren(root,null);
+  return myNodes;
+    
+}
+
+window.getHeaders=function(root)
+{
+	var nodes = [];
+	
+	for( var key in root)
+	{
+		if( key != "children")
+		{
+			nodes.push(key)	
+		}
+	}
+	
+	return nodes;
+}
+
+window.buildMap = function( inTable ) 
+{
+	map = {}
+
+	var res =inTable.split(" ")
+	
+	//console.log(res)
+	
+	i = 3;
+	while( i < res.length)
+	{
+		a = [];
+		a.push(res[i+1])
+		a.push(res[i+2])
+		map[ res[i] ] = a
+		i = i+3
+	}
+	
+	return map;
+}
+
+window.getColumns = function(root) 
+{
+	
+	a = []
+	
+	for ( i in root)
+	{
+		if( i.includes("Adjusted") || ! i.includes("pValues" ))
+		{		
+			if(  i!= "children" && i!="-log10(pValuesAdjusted_Num_Hits)")
+			{
+				anObj = {}
+				anObj.data = i
+				
+				title = i.replace("-log10(pValuesAdjusted_", "");
+				
+				if( title.charAt(title.length-1) == ")") 
+				{
+					title = title.substring(0, title.length-1)
+				}
+				
+				anObj.title = title
+				anObj.defaultContent = "-1"
+				
+				if( i == "id"  || i == "parentId") 
+				{	
+					anObj.visible = false;
+				}
+				
+				a.push(anObj)		 
+			}
+		}
+	
+	}
+	
+	return a
+}
+
+//modded from https://www.html5rocks.com/en/tutorials/file/dndfiles/
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+	window.bigFile = files[0]
+	f = window.bigFile
+    var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) 
+      {
+        return function(e) 
+        {
+        	window.bigBuffer = e.target.result;
+        	enc = new TextDecoder();
+        	start = parseInt(enc.decode(window.bigBuffer.slice(0,20)))
+        	end = parseInt(enc.decode(window.bigBuffer.slice(21,40)))
+        	//console.log(start + " " + end);
+        	
+        	jsonString = enc.decode(window.bigBuffer.slice(start-1,end-1))
+        	window.jsonTree = JSON.parse(jsonString )
+        	
+        	tableStart = parseInt(enc.decode(window.bigBuffer.slice(41,60)))
+        	tableEnd = parseInt(enc.decode(window.bigBuffer.slice(61,80)))
+        	
+        	tableString = enc.decode(window.bigBuffer.slice(tableStart -1,tableEnd -1))
+        	//console.log("\n\n" + tableString)
+        	tableMap = window.buildMap(tableString)
+        	//console.log(tableMap)
+        	
+    		// help from https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
+    		var aTable = document.getElementById('bigTable')
+    		aTable.id = "bigTable"
+    		
+    		var tr = document.createElement('tr')
+    		
+    		var headers = window.getHeaders(window.jsonTree )
+    		var flats = window.flatten(window.jsonTree )
+    					
+			var table = $('#bigTable').DataTable( {
+			    data: flats,
+			    columns: window.getColumns(window.jsonTree)
+			} );
+			
+			 $('#bigTable tbody').on('click', 'tr', function () 
+			 {
+        		data = table.row( this ).data();
+        		var taxa = data["rdptaxa"]
+        		var buffPosition = tableMap[taxa]
+        		
+        		if( buffPosition ) 
+        		{		
+	        		//help from https://gist.github.com/candycode/f18ae1767b2b0aba568e
+	        		var arrayBufferView = new Uint8Array( window.bigBuffer.slice(buffPosition [0]-1,buffPosition[1]-1));
+	        		var blob = new Blob([ arrayBufferView ], { type: "image/jpeg" } );
+	        		var urlCreator = window.URL || window.webkitURL;
+	   				var imageUrl = urlCreator.createObjectURL(blob);
+	    			var img =  document.getElementById('image')
+	    			img.src = imageUrl;
+	        	}
+    		
+    		 } );
+    		
+       	};
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsArrayBuffer(f);
+    }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
