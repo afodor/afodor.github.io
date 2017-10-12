@@ -256,9 +256,11 @@ window.tryImage = function(buffPosition)
         		
         		window.tryImage(buffPosition)
         		
-        		var aNode = window.flats["id"] == data["id"]
-        		//click(aNode)
-    		 } );
+        		var aNode = window.flats["rdptaxa"] == data["rdptaxa"]
+        		
+        		var event = new CustomEvent("recenter", {'node': aNode});
+        		dispatchEvent(event);
+        	 } );
     		
 			 addTree(window.jsonTree)
 			 
