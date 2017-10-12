@@ -1,17 +1,60 @@
 
 <input type="file" id="files" name="files[]" /><br>
 
-<div id="tree-container"></div>
-
+<div class="container">
+<nav>
 <img id="image"/>
-
+</nav>
+<article id="tree-container"></article>
+<footer>
 <table id="bigTable" class="display" cellspacing="0" width="100%"></table>
+</footer>
+</div>
  
 <script src="jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="jquery.dataTables.js"></script>    
 <script type="text/javascript" charset="utf8" src="d3.v3.js"></script>    
 <script src="dndTree.js"></script>
+
+<!-- Help from https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float -->
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: white;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
 
 <meta charset="utf-8">
 <style type="text/css">
@@ -233,7 +276,7 @@ window.tryImage = function(buffPosition)
         		window.tryImage(buffPosition)
         		
         		var aNode = window.flats["id"] == data["id"]
-        		click(aNode)
+        		//click(aNode)
     		 } );
     		
 			 addTree(window.jsonTree)
