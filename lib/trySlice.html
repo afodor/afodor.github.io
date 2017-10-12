@@ -3,9 +3,10 @@
 
 <output id="list"></output>
 <img id="image"/><br><br>
-<table id="bigTable" class="display" cellspacing="0" width="100%"></table>
- <div id="tree-container"></div>
+<div id="tree-container"></div>
 
+<table id="bigTable" class="display" cellspacing="0" width="100%"></table>
+ 
 <script src="jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="jquery.dataTables.js"></script>    
@@ -216,10 +217,10 @@ window.tryImage = function(buffPosition)
     		var tr = document.createElement('tr')
     		
     		var headers = window.getHeaders(window.jsonTree )
-    		var flats = window.flatten(window.jsonTree )
+    		window.flats = window.flatten(window.jsonTree )
     					
 			var table = $('#bigTable').DataTable( {
-			    data: flats,
+			    data: window.flats,
 			    columns: window.getColumns(window.jsonTree)
 			} );
 			
@@ -230,6 +231,9 @@ window.tryImage = function(buffPosition)
         		var buffPosition = window.tableMap[taxa]
         		
         		window.tryImage(buffPosition)
+        		
+        		var aNode = window.flats["id"] == data["id"]
+        		click(aNode)
     		 } );
     		
 			 addTree(window.jsonTree)
