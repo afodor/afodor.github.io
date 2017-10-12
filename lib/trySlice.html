@@ -164,6 +164,21 @@ window.getColumns = function(root)
 	return a
 }
 
+window.tryImage = function(buffPosition)
+{
+	if(buffPosition)
+	{
+		//help from https://gist.github.com/candycode/f18ae1767b2b0aba568e
+		var arrayBufferView = new Uint8Array( window.bigBuffer.slice(buffPosition [0]-1,buffPosition[1]-1));
+		var blob = new Blob([ arrayBufferView ], { type: "image/jpeg" } );
+		var urlCreator = window.URL || window.webkitURL;
+			var imageUrl = urlCreator.createObjectURL(blob);
+		var img =  document.getElementById('image')
+		img.src = imageUrl;
+	}
+}
+
+
 //modded from https://www.html5rocks.com/en/tutorials/file/dndfiles/
   function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
@@ -191,7 +206,7 @@ window.getColumns = function(root)
         	
         	tableString = enc.decode(window.bigBuffer.slice(tableStart -1,tableEnd -1))
         	//console.log("\n\n" + tableString)
-        	tableMap = window.buildMap(tableString)
+        	window.tableMap = window.buildMap(tableString)
         	//console.log(tableMap)
         	
     		// help from https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
@@ -212,19 +227,9 @@ window.getColumns = function(root)
 			 {
         		data = table.row( this ).data();
         		var taxa = data["rdptaxa"]
-        		var buffPosition = tableMap[taxa]
+        		var buffPosition = window.tableMap[taxa]
         		
-        		if( buffPosition ) 
-        		{		
-	        		//help from https://gist.github.com/candycode/f18ae1767b2b0aba568e
-	        		var arrayBufferView = new Uint8Array( window.bigBuffer.slice(buffPosition [0]-1,buffPosition[1]-1));
-	        		var blob = new Blob([ arrayBufferView ], { type: "image/jpeg" } );
-	        		var urlCreator = window.URL || window.webkitURL;
-	   				var imageUrl = urlCreator.createObjectURL(blob);
-	    			var img =  document.getElementById('image')
-	    			img.src = imageUrl;
-	        	}
-    		
+        		window.tryImage(buffPosition)
     		 } );
     		
 			 addTree(window.jsonTree)
