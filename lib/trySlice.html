@@ -200,15 +200,6 @@ window.tryImage = function(buffPosition)
 		var imageUrl = urlCreator.createObjectURL(blob);
 		 var img = $('<img />', {src : imageUrl });
 		 img.id = "anImage"
-		 
-		 var aDoc = document.getElementById('tree-container')
-		 
-		 var child = document.getElementById("anImage");
-		
-		if( child) 
-			parent.removeChild(child);
-		 
-    	img.prependTo(aDoc);
 	}
 }
 
