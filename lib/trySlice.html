@@ -5,9 +5,6 @@
 <header>
 <table id="bigTable" class="display" cellspacing="0" width="100%"></table>
 </header>
-<nav>
-<br><br><br><img id="image"/>
-</nav>
 <article id="tree-container"></article>
 </div>
  
@@ -32,24 +29,8 @@ header, footer {
     text-align: center;
 }
 
-nav {
-    float: left;
-    max-width: 160px;
-    margin: 0;
-    padding: 1em;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-   
-nav ul a {
-    text-decoration: none;
-}
-
 article {
-    margin-left: 170px;
+    margin-left: 0;
     border-left: 1px solid gray;
     padding: 1em;
     overflow: hidden;
@@ -216,9 +197,18 @@ window.tryImage = function(buffPosition)
 		var arrayBufferView = new Uint8Array( window.bigBuffer.slice(buffPosition [0]-1,buffPosition[1]-1));
 		var blob = new Blob([ arrayBufferView ], { type: "image/jpeg" } );
 		var urlCreator = window.URL || window.webkitURL;
-			var imageUrl = urlCreator.createObjectURL(blob);
-		var img =  document.getElementById('image')
-		img.src = imageUrl;
+		var imageUrl = urlCreator.createObjectURL(blob);
+		 var img = $('<img />', {src : imageUrl });
+		 img.id = "anImage"
+		 
+		 var aDoc = document.getElementById('tree-container')
+		 
+		 var child = document.getElementById("anImage");
+		
+		if( child) 
+			parent.removeChild(child);
+		 
+    	img.appendTo(aDoc);
 	}
 }
 
