@@ -374,9 +374,6 @@ window.tryImage = function(buffPosition)
         		var id = data["id"]
         		
         		var taxa = data["rdptaxa"]
-        		var buffPosition = window.tableMap[taxa]
-        		
-        		window.tryImage(buffPosition)
         		
         		var aNode = window.flats[id] 
         		window.centerNode = aNode;
@@ -384,6 +381,20 @@ window.tryImage = function(buffPosition)
         		var event = new CustomEvent("recenter", {'node': aNode});
         		dispatchEvent(event);
         	 } );
+			 
+			 $('#bigTable tbody').on('dblclick', 'tr', function () 
+					 {
+				 		console.log('here')
+		        		data = table.row( this ).data();
+		        		var id = data["id"]
+		        		
+		        		var taxa = data["rdptaxa"]
+		        		var buffPosition = window.tableMap[taxa]
+		        		
+		        		window.tryImage(buffPosition)
+		        		
+		        		
+		        	 } );
     		
 			 addTree(window.jsonTree)
 			 
