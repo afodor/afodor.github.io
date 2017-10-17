@@ -239,8 +239,6 @@ window.buildMap = function( inTable )
 
 	var res =inTable.split(" ")
 	
-	//console.log(res)
-	
 	i = 3;
 	while( i < res.length)
 	{
@@ -341,7 +339,6 @@ window.tryImage = function(buffPosition)
         	enc = new TextDecoder();
         	start = parseInt(enc.decode(window.bigBuffer.slice(0,20)))
         	end = parseInt(enc.decode(window.bigBuffer.slice(21,40)))
-        	//console.log(start + " " + end);
         	
         	jsonString = enc.decode(window.bigBuffer.slice(start-1,end-1))
         	window.jsonTree = JSON.parse(jsonString )
@@ -350,9 +347,7 @@ window.tryImage = function(buffPosition)
         	tableEnd = parseInt(enc.decode(window.bigBuffer.slice(61,80)))
         	
         	tableString = enc.decode(window.bigBuffer.slice(tableStart -1,tableEnd -1))
-        	//console.log("\n\n" + tableString)
         	window.tableMap = window.buildMap(tableString)
-        	//console.log(tableMap)
         	
     		// help from https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
     		var aTable = document.getElementById('bigTable')
@@ -384,8 +379,7 @@ window.tryImage = function(buffPosition)
 			 
 			 $('#bigTable tbody').on('dblclick', 'tr', function () 
 					 {
-				 		console.log('here')
-		        		data = table.row( this ).data();
+				 		data = table.row( this ).data();
 		        		var id = data["id"]
 		        		
 		        		var taxa = data["rdptaxa"]
