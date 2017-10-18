@@ -252,6 +252,8 @@ window.buildMap = function( inTable )
 	return map;
 }
 
+window.columnTitles = []
+
 window.getColumns = function(root) 
 {
 	
@@ -274,6 +276,7 @@ window.getColumns = function(root)
 				}
 				
 				anObj.title = title
+				window.columnTitles.push(title)
 				anObj.defaultContent = "-1"
 				
 				if( i == "id"  || i == "parentId") 
@@ -388,6 +391,18 @@ window.tryImage = function(buffPosition)
 		        		window.tryImage(buffPosition)
 		        		
 		        		
+		        	 } );
+		        	 
+		     
+			 $('#bigTable').on('order.dt',  function () 
+					 {
+					 	var order = table.order();
+					 	console.log("order "+  order[0][0] + " " + order[0][1] );
+					 	window.scaleColumn	= window.columnTitles[ order[0][0]] 
+        				console.log("name " + window.columnTitles[ order[0][0]] )
+        		
+        				var event = new CustomEvent("reorder");
+        				dispatchEvent(event);
 		        	 } );
     		
 			 addTree(window.jsonTree)
